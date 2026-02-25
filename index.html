@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel= "stylesheet" href= "styles.css">
+</head>
+<body>
+    <div class = "calculator">
+    <div class = "display">00000</div>
+    <div class = "row">
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>÷</button>
+    </div>
+    <div class = "row">
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>x</button>
+    </div>
+    <div class = "row">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>-</button>
+    </div>
+    <div class = "row">
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+        <button>+</button>
+    </div>
+    </div>
+    
+    
+    
+<script>
+
+    function add(a, b) {
+        return a + b;
+    }
+
+    function subtract(a, b) {
+        return a - b;
+    }
+
+    function multiply(a, b) {
+        return a * b;
+    }
+
+    function divide(a, b) {
+        return a / b;
+    }
+
+    function operate(a, b, c) {
+        let number1 = a;
+        let number2 = b;
+        let operation = c;
+        return operation(number1, number2);
+    }
+
+    console.log(operate(10, 2, divide))
+
+</script>
+
+</body>
+</html>
