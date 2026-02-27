@@ -3,6 +3,10 @@
     width: 250px;
 }
 
+.clear {
+    width: 250px;
+}
+
 .display {
     display: flex;
     border: solid;
