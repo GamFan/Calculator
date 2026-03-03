@@ -48,6 +48,26 @@
     let operationDisplay; //the display
     let firstInput = false; //check if the first number input is finished
     let resultObtain = false; //check if a result has been obtained to see if the calculator continues or reset. If a new number is entered after a calculation, calculator is reset.
+    let decimalOne = false;
+    let decimalTwo = false;
+
+
+    const decimal = document.getElementById("decimal")
+    decimal.addEventListener(
+        "click", () => {
+            if (firstInput === false && decimalOne === false) {
+                currentNumber += ".";
+                para.textContent = currentNumber;
+                decimalOne = true;
+                console.log(currentNumber)
+            };
+            if (firstInput === true && decimalTwo === false) {
+                nextNumber += ".";
+                para.textContent = `${operationDisplay} ${nextNumber}`;
+                decimalTwo = true;
+            };
+            }
+    )
 
     const one = document.getElementById("1")
     one.addEventListener(
@@ -327,7 +347,6 @@
         }
     )
 
-
     const equal = document.getElementById("equal")
     equal.addEventListener(
         "click", () => {
@@ -347,8 +366,8 @@
     //calculator operations
 
     function equals() {
-        let currentNumberInt = parseInt(currentNumber); //convert string to integer
-        let nextNumberInt = parseInt(nextNumber);
+        let currentNumberInt = parseFloat(currentNumber); //convert string to integer
+        let nextNumberInt = parseFloat(nextNumber); //use parseFloat as partInt ignores the dot
         if (currentNumberInt === 0 && nextNumberInt === 0 && currentOperation === divide) {//check if 0 is divided by 0
             reset();
             para.textContent = "ERROR";
@@ -360,6 +379,7 @@
             nextNumber = "";
             resultObtain = true;
             currentOperation = null;
+            decimalTwo = false;
         }
     }
 
@@ -370,6 +390,8 @@
         currentOperation = null;
         para.textContent = "00000";
         resultObtain = false;
+        decimalOne = false;
+        decimalTwo = false;
     }
 
     function add(a, b) {
@@ -389,7 +411,8 @@
     }
 
     function operate(a, b, c) {
-        return c(a, b);
+        return parseFloat(c(a, b).toFixed(12)); //parseFloat removes the extra 0s created by a set toFixed
+        //toFixed will return a string, parseFloat turns the string into an integer and removes the 0s
     }
 
 </script>
