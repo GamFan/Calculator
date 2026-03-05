@@ -35,38 +35,30 @@
     </div>
     <button id = "clear">Clear</button>
     </div>
-    
 <script>
-
     //calculator inputs
 
     const para = document.querySelector(".display");
     //current and next number are empty strings as it allows for the numbers to concatenate
     let currentNumber = ""; //the first number
     let nextNumber = ""; //the second number
-    let currentOperation; //the math operation
+    let currentOperation = null; //the math operation
     let operationDisplay; //the display
-    let firstInput = false; //check if the first number input is finished
-    let resultObtain = false; //check if a result has been obtained to see if the calculator continues or reset. If a new number is entered after a calculation, calculator is reset.
-    let decimalOne = false;
-    let decimalTwo = false;
-
+    let firstInput = false; //check if the first number input is finished (updates when an operation is pressed)
+    let resultObtain = false; //check if a result has been obtained to see if the calculator continues or resets. If a new number is entered after a calculation, calculator is reset.
 
     const decimal = document.getElementById("decimal")
     decimal.addEventListener(
         "click", () => {
-            if (firstInput === false && decimalOne === false) {
+            if (firstInput === false && !currentNumber.includes(".")) {
                 currentNumber += ".";
                 para.textContent = currentNumber;
-                decimalOne = true;
-                console.log(currentNumber)
             };
-            if (firstInput === true && decimalTwo === false) {
+            if (firstInput === true && !nextNumber.includes(".")) {
                 nextNumber += ".";
                 para.textContent = `${operationDisplay} ${nextNumber}`;
-                decimalTwo = true;
             };
-            }
+        }
     )
 
     const one = document.getElementById("1")
@@ -85,7 +77,7 @@
                 currentNumber += 1;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const two = document.getElementById("2")
@@ -104,7 +96,7 @@
                 currentNumber += 2;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const three = document.getElementById("3")
@@ -123,7 +115,7 @@
                 currentNumber += 3;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const four = document.getElementById("4")
@@ -142,7 +134,7 @@
                 currentNumber += 4;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const five = document.getElementById("5")
@@ -161,7 +153,7 @@
                 currentNumber += 5;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const six = document.getElementById("6")
@@ -180,7 +172,7 @@
                 currentNumber += 6;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const seven = document.getElementById("7")
@@ -199,7 +191,7 @@
                 currentNumber += 7;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const eight = document.getElementById("8")
@@ -218,7 +210,7 @@
                 currentNumber += 8;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const nine = document.getElementById("9")
@@ -237,7 +229,7 @@
                 currentNumber += 9;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const zero = document.getElementById("0")
@@ -256,7 +248,7 @@
                 currentNumber += 0;
                 para.textContent = currentNumber;
             };
-            }
+        }
     )
 
     const addition = document.getElementById("addition")
@@ -363,6 +355,24 @@
         }
     )
 
+    const deletion = document.addEventListener(
+        "keydown", (e) => {
+            if (e.key === "Delete" || e.key === "Backspace" && nextNumber === "" && currentOperation === null) { //if on the first number and there is no operation present
+                currentNumber = currentNumber.slice(0, -1);
+                para.textContent = currentNumber;
+            }
+            if (e.key === "Delete" || e.key === "Backspace" && nextNumber === "" && currentOperation != null) { //delete operation if the next number is blank
+                currentOperation = null;
+                para.textContent = currentNumber;
+                firstInput = false;
+            }
+            if (e.key === "Delete" || e.key === "Backspace" && nextNumber != "") { //delete the next number if it is present
+                nextNumber = nextNumber.slice(0, -1);
+                para.textContent = `${operationDisplay} ${nextNumber}`;
+            }
+        }
+    )
+
     //calculator operations
 
     function equals() {
@@ -375,7 +385,7 @@
         else {
             result = operate(currentNumberInt, nextNumberInt, currentOperation);
             para.textContent = result;
-            currentNumber = result;
+            currentNumber = result.toString(); //convert back to string for the delete button to function correctly
             nextNumber = "";
             resultObtain = true;
             currentOperation = null;
@@ -390,8 +400,6 @@
         currentOperation = null;
         para.textContent = "00000";
         resultObtain = false;
-        decimalOne = false;
-        decimalTwo = false;
     }
 
     function add(a, b) {
@@ -411,11 +419,9 @@
     }
 
     function operate(a, b, c) {
-        return parseFloat(c(a, b).toFixed(12)); //parseFloat removes the extra 0s created by a set toFixed
+        return parseFloat(c(a, b).toFixed(10)); //parseFloat removes the extra 0s created by a set toFixed
         //toFixed will return a string, parseFloat turns the string into an integer and removes the 0s
     }
-
 </script>
-
 </body>
 </html>
