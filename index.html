@@ -50,310 +50,184 @@
     const decimal = document.getElementById("decimal")
     decimal.addEventListener(
         "click", () => {
-            if (firstInput === false && !currentNumber.includes(".")) {
-                currentNumber += ".";
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true && !nextNumber.includes(".")) {
-                nextNumber += ".";
-                para.textContent = `${operationDisplay} ${nextNumber}`;
+            decimalPlace();
+        }
+    );
+
+    document.addEventListener("keydown", (e) => { //arithmetic keyboard function
+        if(e.key === ".") {
+            decimalPlace();
+        }
+        if(e.key === "+") {
+            arithmetic(add, "+");
+        }
+        if(e.key === "-") {
+            arithmetic(subtract, "-");
+        }
+        if(e.key === "/") {
+            e.preventDefault();
+            arithmetic(divide, "÷");
+        }
+        if(e.key === "*") {
+            arithmetic(multiply, "x");
+        }
+        if(e.key === "=" || e.key === "Enter") {
+            if (currentNumber != "" && operate != null && nextNumber != "") {
+                equals();
             };
         }
-    )
+    });
+
+    document.addEventListener("keydown", (e) => { //number keyboard function
+        if(e.key >= "0" && e.key <= "9") {
+            switch (e.key) {
+                case "1": 
+                    number(1);
+                    break;
+                case "2": 
+                    number(2);
+                    break;
+                case "3": 
+                    number(3);
+                    break;
+                case "4": 
+                    number(4);
+                    break;
+                case "5": 
+                    number(5);
+                    break;
+                case "6": 
+                    number(6);
+                    break;
+                case "7": 
+                    number(7);
+                    break;
+                case "8": 
+                    number(8);
+                    break;
+                case "9": 
+                    number(9);
+                    break;
+                case "0": 
+                    number(0);
+                    break;
+            }
+        }
+    });
 
     const one = document.getElementById("1")
     one.addEventListener(
         "click", () => {
-            if (firstInput === false) {//add the number to the empty string of the first number
-                currentNumber += 1;
-                para.textContent = currentNumber;
-             };
-            if (firstInput === true) {//add the number to the empty string of the next number
-                nextNumber += 1;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {//reset if a new number is pressed and a result is obtained
-                reset();
-                currentNumber += 1;
-                para.textContent = currentNumber;
-            };
+            number(1);
         }
-    )
+    );
 
     const two = document.getElementById("2")
     two.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 2;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 2;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 2;
-                para.textContent = currentNumber;
-            };
+            number(2);
         }
-    )
+    );
 
     const three = document.getElementById("3")
     three.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 3;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 3;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 3;
-                para.textContent = currentNumber;
-            };
+            number(3);
         }
-    )
+    );
 
     const four = document.getElementById("4")
     four.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 4;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 4;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 4;
-                para.textContent = currentNumber;
-            };
+            number(4);
         }
-    )
+    );
 
     const five = document.getElementById("5")
     five.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 5;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 5;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 5;
-                para.textContent = currentNumber;
-            };
+            number(5);
         }
-    )
+    );
 
     const six = document.getElementById("6")
     six.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 6;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 6;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 6;
-                para.textContent = currentNumber;
-            };
+            number(6);
         }
-    )
+    );
 
     const seven = document.getElementById("7")
     seven.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 7;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 7;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 7;
-                para.textContent = currentNumber;
-            };
+            number(7);
         }
-    )
+    );
 
     const eight = document.getElementById("8")
     eight.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 8;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 8;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 8;
-                para.textContent = currentNumber;
-            };
+            number(8);
         }
-    )
+    );
 
     const nine = document.getElementById("9")
     nine.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 9;
-                para.textContent = currentNumber;
-            };
-            if (firstInput === true) {
-                nextNumber += 9;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-            };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 9;
-                para.textContent = currentNumber;
-            };
+            number(9);
         }
-    )
+    );
 
     const zero = document.getElementById("0")
     zero.addEventListener(
         "click", () => {
-            if (firstInput === false) {
-                currentNumber += 0;
-                para.textContent = currentNumber;
-             };
-            if (firstInput === true) {
-                nextNumber += 0;
-                para.textContent = `${operationDisplay} ${nextNumber}`;
-             };
-            if (resultObtain === true && currentOperation === null) {
-                reset();
-                currentNumber += 0;
-                para.textContent = currentNumber;
-            };
+            number(0);
         }
-    )
+    );
 
     const addition = document.getElementById("addition")
     addition.addEventListener(
         "click", () => {
-            if (currentOperation != null && nextNumber != "") {
-                equals();
-                currentOperation = add;
-                operationDisplay = `${currentNumber} +`;
-                para.textContent = operationDisplay;
-            }
-            if (currentOperation === add) {
-                operationDisplay = `${currentNumber} +`;
-                para.textContent = operationDisplay;
-            }
-            else {
-                currentOperation = add;
-                firstInput = true;
-                operationDisplay = `${currentNumber} +`;
-                para.textContent = operationDisplay;
-            }
+            arithmetic(add, "+");
         }
-    )
+    );
 
     const minus = document.getElementById("minus")
     minus.addEventListener(
         "click", () => {
-            if (currentOperation != null && nextNumber != "") {
-                equals();
-                currentOperation = subtract;
-                operationDisplay = `${currentNumber} -`;
-                para.textContent = operationDisplay;
-            }
-            if (currentOperation === subtract) {
-                operationDisplay = `${currentNumber} -`;
-                para.textContent = operationDisplay;
-            }
-            else {
-                currentOperation = subtract;
-                firstInput = true;
-                operationDisplay = `${currentNumber} -`;
-                para.textContent = operationDisplay;
-            }
+            arithmetic(subtract, "-");
         }
-    )
+    );
 
     const division = document.getElementById("division")
     division.addEventListener(
         "click", () => {
-            if (currentOperation != null && nextNumber != "") {
-                equals();
-                currentOperation = divide;
-                operationDisplay = `${currentNumber} ÷`;
-                para.textContent = operationDisplay;
-            }
-            if (currentOperation === divide) {
-                operationDisplay = `${currentNumber} ÷`;
-                para.textContent = operationDisplay;
-            }
-            else {
-                currentOperation = divide;
-                firstInput = true;
-                operationDisplay = `${currentNumber} ÷`;
-                para.textContent = operationDisplay;
-            }
+            arithmetic(divide, "÷");
         }
-    )
+    );
 
     const multiplication = document.getElementById("multiplication")
     multiplication.addEventListener(
         "click", () => {
-            if (currentOperation != null && nextNumber != "") {
-                equals();
-                currentOperation = multiply;
-                operationDisplay = `${currentNumber} x`;
-                para.textContent = operationDisplay;
-            }
-            if (currentOperation === multiply) {
-                operationDisplay = `${currentNumber} x`;
-                para.textContent = operationDisplay;
-            }
-            else {
-                currentOperation = multiply;
-                firstInput = true;
-                operationDisplay = `${currentNumber} x`;
-                para.textContent = operationDisplay;
-            }
+            arithmetic(multiply, "x");
         }
-    )
+    );
 
     const equal = document.getElementById("equal")
     equal.addEventListener(
         "click", () => {
             if (currentNumber != "" && operate != null && nextNumber != "") {
                 equals();
-            };
+            }
         }
-    )
+    );
 
     const clear = document.getElementById("clear")
     clear.addEventListener(
         "click", () => {
         reset();
         }
-    )
+    );
 
     const deletion = document.addEventListener(
         "keydown", (e) => {
@@ -371,9 +245,55 @@
                 para.textContent = `${operationDisplay} ${nextNumber}`;
             }
         }
-    )
+    );
 
     //calculator operations
+
+    function number(a) {
+        if (firstInput === false) {//add the number to the empty string of the first number
+            currentNumber += a;
+            para.textContent = currentNumber;
+        }
+        if (firstInput === true) {//add the number to the empty string of the next number
+            nextNumber += a;
+            para.textContent = `${operationDisplay} ${nextNumber}`;
+        }
+        if (resultObtain === true && currentOperation === null) {//reset if a new number is pressed and a result is obtained
+            reset();
+            currentNumber += a;
+            para.textContent = currentNumber;
+        }
+    };
+    
+    function arithmetic(a, b) {
+        if (currentOperation != null && nextNumber != "") {
+            equals();
+            currentOperation = a;
+            operationDisplay = `${currentNumber} ${b}`;
+            para.textContent = operationDisplay;
+        }
+        if (currentOperation === a) {
+            operationDisplay = `${currentNumber} ${b}`;
+            para.textContent = operationDisplay;
+        }
+        else {
+            currentOperation = a;
+            firstInput = true;
+            operationDisplay = `${currentNumber} ${b}`;
+            para.textContent = operationDisplay;
+        }
+    };
+
+    function decimalPlace() {
+        if (currentOperation === null && !currentNumber.includes(".")) {
+                currentNumber += ".";
+                para.textContent = currentNumber;
+            };
+        if (currentOperation != null && !nextNumber.includes(".")) {
+                nextNumber += ".";
+                para.textContent = `${operationDisplay} ${nextNumber}`;
+            };
+    };
 
     function equals() {
         let currentNumberInt = parseFloat(currentNumber); //convert string to integer
@@ -389,9 +309,8 @@
             nextNumber = "";
             resultObtain = true;
             currentOperation = null;
-            decimalTwo = false;
         }
-    }
+    };
 
     function reset() {
         currentNumber = ""; 
@@ -400,28 +319,39 @@
         currentOperation = null;
         para.textContent = "00000";
         resultObtain = false;
-    }
+    };
 
     function add(a, b) {
         return a + b;
-    }
+    };
 
     function subtract(a, b) {
         return a - b;
-    }
+    };
 
     function multiply(a, b) {
         return a * b;
-    }
+    };
 
     function divide(a, b) {
         return a / b;
-    }
+    };
 
     function operate(a, b, c) {
-        return parseFloat(c(a, b).toFixed(10)); //parseFloat removes the extra 0s created by a set toFixed
+        if (!a && !b) { //check if both numbers are not numbers
+            return 0;
+        }
+        if (!a) { //return second number if first has no numbers
+            return b;
+        }
+        if (!b) { //return first number if second has no numbers
+            return a;
+        }
+        else {
+            return parseFloat(c(a, b).toFixed(10));
+        } //parseFloat removes the extra 0s created by a set toFixed
         //toFixed will return a string, parseFloat turns the string into an integer and removes the 0s
-    }
+    };
 </script>
 </body>
 </html>
