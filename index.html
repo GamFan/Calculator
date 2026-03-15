@@ -6,35 +6,59 @@
     <title>Calculator</title>
     <link rel= "stylesheet" href= "styles.css">
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
+    <div class = "column">
+
+    <div class = "header">Simple Calculator</div>
+
+    <div class = "middle">
     <div class = "calculator">
-    <div class = "display">00000</div>
-    <div class = "row">
-        <button id = "7">7</button>
-        <button id = "8">8</button>
-        <button id = "9">9</button>
-        <button id = "division">÷</button>
+        <div class = "display">00000</div>
+        <div class = "row">
+            <button id = "7">7</button>
+            <button id = "8">8</button>
+            <button id = "9">9</button>
+            <button id = "division">÷</button>
+        </div>
+        <div class = "row">
+            <button id = "4">4</button>
+            <button id = "5">5</button>
+            <button id = "6">6</button>
+            <button id = "multiplication">x</button>
+        </div>
+        <div class = "row">
+            <button id = "1">1</button>
+            <button id = "2">2</button>
+            <button id = "3">3</button>
+            <button id = "minus">-</button>
+        </div>
+        <div class = "row">
+            <button id = "0">0</button>
+            <button id = "decimal">.</button>
+            <button id = "equal">=</button>
+            <button id = "addition">+</button>
+        </div>
+        <button id = "clear">Clear</button>
     </div>
-    <div class = "row">
-        <button id = "4">4</button>
-        <button id = "5">5</button>
-        <button id = "6">6</button>
-        <button id = "multiplication">x</button>
+    <div class = "guide">
+        <h1>Key Shortcuts</h1>
+        <ul>
+            <li>Add: +</li>
+            <li>Subtract: -</li>
+            <li>Multiply: *</li>
+            <li>Divide: /</li>
+            <li>Decimal: .</li>
+            <li>Backspace = delete</li>
+            <li>Equals: = | return | enter</li>
+            <li>Clear: escape</li>
+        </ul>
     </div>
-    <div class = "row">
-        <button id = "1">1</button>
-        <button id = "2">2</button>
-        <button id = "3">3</button>
-        <button id = "minus">-</button>
     </div>
-    <div class = "row">
-        <button id = "0">0</button>
-        <button id = "decimal">.</button>
-        <button id = "equal">=</button>
-        <button id = "addition">+</button>
+
+    <div class = "footer"></div>
+
     </div>
-    <button id = "clear">Clear</button>
-    </div>
+
 <script>
     //calculator inputs
 
@@ -71,10 +95,16 @@
         if(e.key === "*") {
             arithmetic(multiply, "x");
         }
+        if (event.key === 'Enter' && !event.shiftKey) { //prevent shift + enter from returning the last event rather than the equals function
+            event.preventDefault();
+        }
         if(e.key === "=" || e.key === "Enter") {
             if (currentNumber != "" && operate != null && nextNumber != "") {
                 equals();
             };
+        }
+        if (e.key === "Escape") {
+            reset();
         }
     });
 
@@ -266,17 +296,17 @@
     };
     
     function arithmetic(a, b) {
-        if (currentOperation != null && nextNumber != "") {
+        if (currentOperation != null && nextNumber != "") { //perform the last arithmetic if a different arithmetic is already present
             equals();
             currentOperation = a;
+            operationDisplay = `${currentNumber} ${b}`; //change display to the arithmetic
+            para.textContent = operationDisplay;
+        }
+        if (currentOperation === a) { //no change when current operation is repeated
             operationDisplay = `${currentNumber} ${b}`;
             para.textContent = operationDisplay;
         }
-        if (currentOperation === a) {
-            operationDisplay = `${currentNumber} ${b}`;
-            para.textContent = operationDisplay;
-        }
-        else {
+        if (currentNumber != "") {
             currentOperation = a;
             firstInput = true;
             operationDisplay = `${currentNumber} ${b}`;

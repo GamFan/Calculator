@@ -1,21 +1,79 @@
+body {
+    background-color: #1F2937;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.header {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #1F2937;
+    color: white;
+}
+
+.footer {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #1F2937;
+}
+
+.middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    margin: 100px;
+}
+
+ul {
+    padding-left: 0px;
+    text-align: left;
+    padding-left: 25px;
+}
+
 .calculator {
-    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
     width: 250px;
+    padding: 15px;
+    border: solid;
+    border-radius: 25px;
+    border-width: 1px;
+    border-color: black;
+    background-color: #1F2937;
 }
 
 #clear {
     width: 250px;
+    border-radius: 10px;
+    background-color: rgb(151, 158, 177);
 }
 
 .display {
     display: flex;
     border: solid;
     border-width: 1px;
+    border-radius: 10px;
     border-color: black;
+    background-color: rgb(210, 215, 227);
     height: 50px;
     font-size: 30px;
     align-items: center;
     padding-left: 10px;
+    width: 250px;
+    overflow: scroll;
+    white-space: nowrap; /* Prevents text from wrapping to the next line (solves wrapping issues with arithmetics) */
 }
 
 .row {
@@ -27,5 +85,19 @@
 
 button {
     height: 75px;
-    width: 75px;
+    background-color: rgb(255, 255, 255);
+    width: 62px;
+    border-color:#1F2937;
+    border-radius: 5px;
+}
+
+.guide {
+    text-align: center;
+    border-width: 1px;
+    border: solid;
+    border-color: black;
+    border-radius: 10px;
+    width: 250px;
+    height: 460px;
+    background-color: rgb(210, 215, 227);
 }
